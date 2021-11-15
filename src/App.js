@@ -1,5 +1,11 @@
+import Admin from "./layouts/Admin";
+
 const App = () => {
-  return <div>Initial Setup</div>;
+  return (
+    <>
+      <Admin />
+    </>
+  );
 };
 
 export default App;
