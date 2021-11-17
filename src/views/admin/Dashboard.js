@@ -1,7 +1,8 @@
 import DashboardStats from "../../components/Stats/DashboardStats";
 import OrderList from "../../components/Order/Recent/OrderList";
 import EventCalendar from "../../components/Event/EventCalendar";
-import FooterAdmin from "../../components/Common/Footer/FooterAdmin";
+
+import AdminFooter from "../../components/Common/AdminFooter";
 
 const Dashboard = () => {
   return (
@@ -16,7 +17,7 @@ const Dashboard = () => {
             <OrderList />
           </div>
         </div>
-        <FooterAdmin />
+        <AdminFooter />
       </div>
     </>
   );

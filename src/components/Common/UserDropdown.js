@@ -1,6 +1,6 @@
 import React, { useState, createRef } from "react";
 import { createPopper } from "@popperjs/core";
-import userImage from "../../../assets/img/user-profile.jpg";
+import userImage from "../../assets/img/user-profile.jpg";
 
 const UserDropdown = () => {
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);

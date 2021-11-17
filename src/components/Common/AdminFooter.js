@@ -1,4 +1,4 @@
-const FooterAdmin = () => {
+const AdminFooter = () => {
   return (
     <>
       <footer className="block py-4">
@@ -36,4 +36,4 @@ const FooterAdmin = () => {
   );
 };
 
-export default FooterAdmin;
+export default AdminFooter;

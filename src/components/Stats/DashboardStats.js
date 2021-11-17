@@ -1,4 +1,4 @@
-import CardStats from "../Common/Card/CardStats";
+import CardStats from "../Common/CardStats";
 import { faCalendarAlt, faTicketAlt } from "@fortawesome/free-solid-svg-icons";
 
 const DashboardStats = () => {

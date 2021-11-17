@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
-import AdminNavbar from "../components/Common/Navbar/AdminNavbar";
-import Sidebar from "../components/Common/Sidebar/Sidebar";
+import AdminNavbar from "../components/Common/AdminNavbar";
+import AdminSidebar from "../components/Common/AdminSidebar";
 
 import Dashboard from "../views/admin/Dashboard";
 import Event from "../views/admin/Event";
@@ -9,7 +9,7 @@ import Event from "../views/admin/Event";
 const Admin = () => {
   return (
     <>
-      <Sidebar />
+      <AdminSidebar />
       <div className="relative md:ml-64 bg-gray-100 h-screen">
         <AdminNavbar />
         <div>

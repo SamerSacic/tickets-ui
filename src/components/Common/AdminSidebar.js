@@ -9,7 +9,7 @@ import {
   faCalendarAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-import UserDropdown from "../Dropdown/UserDropdown";
+import UserDropdown from "./UserDropdown";
 
 const Sidebar = () => {
   const [collapseShow, setCollapseShow] = useState("hidden");

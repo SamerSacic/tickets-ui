@@ -2,17 +2,16 @@ import { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-import FooterAdmin from "../../components/Common/Footer/FooterAdmin";
+import DateTimePicker from "../../components/Common/DateTimePicker";
+import AdminFooter from "../../components/Common/AdminFooter";
 
 const Event = () => {
   const [showEventForm, setShowEventForm] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
+
   return (
     <>
       <div className="relative px-4 md:px-10 mx-auto w-full py-6 bg-white">
@@ -92,31 +91,13 @@ const Event = () => {
                     <label className="uppercase text-gray-700">
                       Event Start Date *
                     </label>
-                    <DatePicker
-                      selected={startDate}
-                      showTimeSelect
-                      onChange={(date) => setStartDate(date)}
-                    />
-                    {/* <input
-                      type="text"
-                      placeholder="Event Start Date"
-                      className="px-3 py-3 placeholder-gray-300 text-gray-600 relative bg-white rounded text-sm border border-gray-300 outline-none focus:outline-none focus:shadow-outline w-full pr-10"
-                    /> */}
+                    <DateTimePicker />
                   </div>
                   <div className="relative flex w-full flex-wrap items-stretch mb-3 ml-2">
                     <label className="uppercase text-gray-700">
                       Event End Date *
                     </label>
-                    <DatePicker
-                      selected={startDate}
-                      showTimeSelect
-                      onChange={(date) => setStartDate(date)}
-                    />
-                    {/* <input
-                      type="text"
-                      placeholder="Event End Date"
-                      className="px-3 py-3 placeholder-gray-300 text-gray-600 relative bg-white rounded text-sm border border-gray-300 outline-none focus:outline-none focus:shadow-outline w-full pr-10"
-                    /> */}
+                    <DateTimePicker />
                   </div>
                 </div>
                 <div className="flex items-center justify-end">
@@ -148,7 +129,7 @@ const Event = () => {
           </div>
           <div className="flex w-full xl:w-4/12 px-4">Content</div>
         </div>
-        <FooterAdmin />
+        <AdminFooter />
       </div>
     </>
   );
