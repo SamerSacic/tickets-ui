@@ -10,7 +10,7 @@ const Admin = () => {
   return (
     <>
       <AdminSidebar />
-      <div className="relative md:ml-64 bg-gray-100 h-screen">
+      <div className="relative md:ml-64 bg-gray-100 min-h-screen">
         <AdminNavbar />
         <div>
           <Routes>
