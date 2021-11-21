@@ -1,72 +1,45 @@
-import { useState } from "react";
-import moment from "moment";
+import { useForm } from "react-hook-form";
 
-import Editor from "../../components/Common/Form/Editor";
-import DateTimePicker from "../../components/Common/Form/DateTimePicker";
+import Label from "../Common/FormElement/Label";
+import Input from "../Common/FormElement/Input";
+import Editor from "../Common/FormElement/Editor";
+import DateTimePicker from "../Common/FormElement/DateTimePicker";
 
 const CreateEventForm = ({ onAddEvent }) => {
-  const [eventTitle, setEventTitle] = useState("");
-  const [eventDesc, setEventDec] = useState("");
-  const [eventStartDate, setEventStartDate] = useState(new Date());
-  const [eventEndDate, setEventEndDate] = useState(new Date());
+  const { register, handleSubmit } = useForm();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const enteredTitle = eventTitle;
-    const enteredDesc = eventDesc;
-    const enteredStartDate = moment(eventStartDate).toISOString();
-    const enteredEndDate = moment(eventEndDate).toISOString();
-
-    const eventData = {
-      title: enteredTitle,
-      description: enteredDesc,
-      period: {
-        start: enteredStartDate,
-        end: enteredEndDate,
-      },
-    };
-
-    // console.log(eventData);
-
-    onAddEvent(eventData);
+  const onSubmit = (data) => {
+    console.log(data);
+    onAddEvent(data);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-wrap mt-5 border-t border-gray-100 pt-6">
         <div className="flex flex-col w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
           <div className="relative flex w-full flex-wrap items-stretch mb-3">
-            <label className="uppercase text-gray-700">Event Title *</label>
-            <input
-              onChange={(event) => {
-                setEventTitle(event.target.value);
-              }}
-              type="text"
+            <Label text="Event Title" />
+            <Input
+              name="eventTitle"
+              register={register}
               placeholder="Event Title"
               className="px-3 py-3 placeholder-gray-300 text-gray-600 relative bg-white rounded text-sm border border-gray-300 outline-none focus:outline-none focus:shadow-outline w-full pr-10"
             />
           </div>
           <div className="relative flex flex-col w-full flex-wrap items-stretch mb-3">
-            <label className="uppercase text-gray-700">
-              Event Description *
-            </label>
+            <Label text="Event Description" />
             <div>
-              <Editor onAction={setEventDec} />
+              {/* <Editor control={control} inputName="eventDesc" /> */}
             </div>
           </div>
           <div className="flex items-center justify-between">
             <div className="relative flex w-full flex-wrap items-stretch mb-3 mr-2">
-              <label className="uppercase text-gray-700">
-                Event Start Date *
-              </label>
-              <DateTimePicker onAction={setEventStartDate} />
+              {/* <Label text="Event Start Date" /> */}
+              {/* <DateTimePicker control={control} inputName="eventStartDate" /> */}
             </div>
             <div className="relative flex w-full flex-wrap items-stretch mb-3 ml-2">
-              <label className="uppercase text-gray-700">
-                Event End Date *
-              </label>
-              <DateTimePicker onAction={setEventEndDate} />
+              {/* <Label text="Event End Date" /> */}
+              {/* <DateTimePicker control={control} inputName="eventEndDate" /> */}
             </div>
           </div>
         </div>
@@ -124,7 +97,7 @@ const CreateEventForm = ({ onAddEvent }) => {
           Cancel
         </button>
         <button className="bg-green-500  text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-          Save Changes
+          Create Event
         </button>
       </div>
     </form>
