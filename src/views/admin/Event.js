@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 import { Transition } from "@headlessui/react";
@@ -10,22 +10,17 @@ import CreateEventForm from "../../components/Event/CreateEventForm";
 import AdminFooter from "../../components/Common/AdminFooter";
 
 const Event = () => {
+  const [events, setEvents] = useState([]);
   const [showEventForm, setShowEventForm] = useState(false);
 
-  const addEventHandler = (event) => {
+  useEffect(() => {
     axios
-      .post("https://thawing-reaches-07578.herokuapp.com/events", event, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        console.log(response.status);
-      })
+      .get("https://thawing-reaches-07578.herokuapp.com/events")
+      .then((response) => setEvents(response.data))
       .catch((error) => {
         console.log(error);
       });
-  };
+  }, []);
 
   return (
     <>
@@ -52,12 +47,12 @@ const Event = () => {
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <CreateEventForm onAddEvent={addEventHandler} />
+          <CreateEventForm />
         </Transition>
       </div>
       <div className="relative px-4 md:px-10 mx-auto w-full pt-6">
         <div className="mb-12 xl:mb-0">
-          <EventTable color="light" />
+          <EventTable color="light" events={events} />
         </div>
 
         <AdminFooter />
