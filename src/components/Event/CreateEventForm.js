@@ -1,21 +1,19 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import moment from "moment";
-import axios from "axios";
 
-import Alert from "../Common/Alert";
 import Label from "../Common/FormElement/Label";
 import Input from "../Common/FormElement/Input";
 import Editor from "../Common/FormElement/Editor";
 import DateTimePicker from "../Common/FormElement/DateTimePicker";
 
-const CreateEventForm = () => {
+const CreateEventForm = ({ onAddEvent, setShowEventForm }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
   const { register, control, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     setIsSubmitted(true);
+
     const event = {
       title: data.eventTitle,
       description: data.eventDesc,
@@ -25,35 +23,11 @@ const CreateEventForm = () => {
       },
     };
 
-    const addEvent = (event) => {
-      axios
-        .post("https://thawing-reaches-07578.herokuapp.com/events", event, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((response) => {
-          if (response.status === 201) {
-            setShowAlert(true);
-            setIsSubmitted(false);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-
-    addEvent(event);
+    onAddEvent(event, setIsSubmitted);
   };
 
   return (
     <>
-      {showAlert && (
-        <Alert
-          message="Event is created successfully!"
-          setShowAlert={setShowAlert}
-        />
-      )}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={isSubmitted ? "opacity-30" : ""}
@@ -65,7 +39,7 @@ const CreateEventForm = () => {
               <Input
                 name="eventTitle"
                 register={register}
-                placeholder="Event Title"
+                placeholder="eg. Open Air 2022"
                 className="px-3 py-3 placeholder-gray-300 text-gray-600 relative bg-white rounded text-sm border border-gray-300 outline-none focus:outline-none focus:shadow-outline w-full pr-10"
               />
             </div>
@@ -78,19 +52,11 @@ const CreateEventForm = () => {
             <div className="flex items-center justify-between">
               <div className="relative flex w-full flex-wrap items-stretch mb-3 mr-2">
                 <Label text="Event Start Date" />
-                <DateTimePicker
-                  control={control}
-                  inputName="eventStartDate"
-                  placeholder="Event Start Date"
-                />
+                <DateTimePicker control={control} inputName="eventStartDate" />
               </div>
               <div className="relative flex w-full flex-wrap items-stretch mb-3 ml-2">
                 <Label text="Event End Date" />
-                <DateTimePicker
-                  control={control}
-                  inputName="eventEndDate"
-                  placeholder="Event End Date"
-                />
+                <DateTimePicker control={control} inputName="eventEndDate" />
               </div>
             </div>
           </div>
@@ -142,6 +108,7 @@ const CreateEventForm = () => {
         </div>
         <div className="flex w-full px-4 items-center justify-end mt-5">
           <button
+            onClick={() => setShowEventForm(false)}
             className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="button"
           >

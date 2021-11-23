@@ -5,7 +5,7 @@ import TableDropdown from "../Common/TableDropdown";
 
 import EventPlaceholder from "../../assets/img/event-placeholder.png";
 
-const EventTable = ({ color, events }) => {
+const EventTable = ({ color, events, onDelete }) => {
   return (
     <>
       <div
@@ -93,54 +93,56 @@ const EventTable = ({ color, events }) => {
               </tr>
             </thead>
             <tbody>
-              {events?.map((event) => (
-                <tr key={event.id}>
-                  <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                    <img
-                      src={EventPlaceholder}
-                      className="h-12 w-12 bg-white rounded-full border"
-                      alt="..."
-                    ></img>{" "}
-                    <span
-                      className={
-                        "ml-3 font-bold " +
-                        (color === "light" ? "text-gray-600" : "text-white")
-                      }
-                    >
-                      {event.title}
-                    </span>
-                  </th>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    200
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    $2,500 USD
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <FontAwesomeIcon
-                      icon={faCircle}
-                      className="text-yellow-500 mr-2"
-                    />{" "}
-                    pending
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <div className="flex items-center">
-                      <span className="mr-2">60%</span>
-                      <div className="relative w-full">
-                        <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-                          <div
-                            style={{ width: "60%" }}
-                            className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
-                          ></div>
+              {events
+                ?.map((event) => (
+                  <tr key={event.id}>
+                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+                      <img
+                        src={EventPlaceholder}
+                        className="h-12 w-12 bg-white rounded-full border"
+                        alt="..."
+                      ></img>{" "}
+                      <span
+                        className={
+                          "ml-3 font-bold " +
+                          (color === "light" ? "text-gray-600" : "text-white")
+                        }
+                      >
+                        {event.title}
+                      </span>
+                    </th>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      200
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      $2,500 USD
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <FontAwesomeIcon
+                        icon={faCircle}
+                        className="text-yellow-500 mr-2"
+                      />{" "}
+                      pending
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div className="flex items-center">
+                        <span className="mr-2">60%</span>
+                        <div className="relative w-full">
+                          <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
+                            <div
+                              style={{ width: "60%" }}
+                              className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
+                            ></div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                    <TableDropdown />
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
+                      <TableDropdown event={event} onDelete={onDelete} />
+                    </td>
+                  </tr>
+                ))
+                .reverse()}
             </tbody>
           </table>
         </div>
