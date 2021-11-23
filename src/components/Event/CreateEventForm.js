@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import moment from "moment";
 
 import Label from "../Common/FormElement/Label";
 import Input from "../Common/FormElement/Input";
@@ -6,11 +7,19 @@ import Editor from "../Common/FormElement/Editor";
 import DateTimePicker from "../Common/FormElement/DateTimePicker";
 
 const CreateEventForm = ({ onAddEvent }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, control, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    onAddEvent(data);
+    const event = {
+      title: data.eventTitle,
+      description: data.eventDesc,
+      period: {
+        start: moment(data.eventStartDate).toISOString(),
+        end: moment(data.eventEndDate).toISOString(),
+      },
+    };
+
+    onAddEvent(event);
   };
 
   return (
@@ -29,17 +38,25 @@ const CreateEventForm = ({ onAddEvent }) => {
           <div className="relative flex flex-col w-full flex-wrap items-stretch mb-3">
             <Label text="Event Description" />
             <div>
-              {/* <Editor control={control} inputName="eventDesc" /> */}
+              <Editor control={control} inputName="eventDesc" />
             </div>
           </div>
           <div className="flex items-center justify-between">
             <div className="relative flex w-full flex-wrap items-stretch mb-3 mr-2">
-              {/* <Label text="Event Start Date" /> */}
-              {/* <DateTimePicker control={control} inputName="eventStartDate" /> */}
+              <Label text="Event Start Date" />
+              <DateTimePicker
+                control={control}
+                inputName="eventStartDate"
+                placeholder="Event Start Date"
+              />
             </div>
             <div className="relative flex w-full flex-wrap items-stretch mb-3 ml-2">
-              {/* <Label text="Event End Date" /> */}
-              {/* <DateTimePicker control={control} inputName="eventEndDate" /> */}
+              <Label text="Event End Date" />
+              <DateTimePicker
+                control={control}
+                inputName="eventEndDate"
+                placeholder="Event End Date"
+              />
             </div>
           </div>
         </div>

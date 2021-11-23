@@ -12,17 +12,15 @@ import AdminFooter from "../../components/Common/AdminFooter";
 const Event = () => {
   const [showEventForm, setShowEventForm] = useState(false);
 
-  const addEventHandler = (eventData) => {
-    console.log(JSON.stringify(eventData));
-
+  const addEventHandler = (event) => {
     axios
-      .post("https://thawing-reaches-07578.herokuapp.com/events", eventData, {
+      .post("https://thawing-reaches-07578.herokuapp.com/events", event, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.status);
       })
       .catch((error) => {
         console.log(error);
