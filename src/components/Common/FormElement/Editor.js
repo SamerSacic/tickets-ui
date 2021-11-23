@@ -11,7 +11,7 @@ const Editor = ({ control, inputName }) => {
       render={({ field: { onChange, onBlur } }) => (
         <CKEditor
           editor={ClassicEditor}
-          data="<p>Enter event description!</p>"
+          data=""
           onReady={(editor) => {
             editor.editing.view.change((writer) => {
               writer.setStyle(
@@ -26,7 +26,6 @@ const Editor = ({ control, inputName }) => {
           onChange={(event, editor) => {
             const data = editor.getData();
             onChange(data);
-            // console.log({ event, editor, data });
           }}
           onBlur={(event, editor) => {
             onBlur(editor);
