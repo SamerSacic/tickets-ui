@@ -4,7 +4,7 @@ import { createPopper } from "@popperjs/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 
-const TableDropdown = ({ event, onDelete, onEventEdit }) => {
+const TableDropdown = ({ event, onDelete, onEdit }) => {
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
   const btnDropdownRef = createRef();
   const popoverDropdownRef = createRef();
@@ -42,7 +42,7 @@ const TableDropdown = ({ event, onDelete, onEventEdit }) => {
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700"
           }
-          onClick={() => onEventEdit(true)}
+          onClick={() => onEdit(event)}
         >
           Edit
         </button>

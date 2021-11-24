@@ -15,7 +15,10 @@ const Event = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [showEventForm, setShowEventForm] = useState(false);
   const [showEditEvent, setShowEditEvent] = useState(false);
+  // All Events
   const [events, setEvents] = useState([]);
+  // Single Event
+  const [event, setEvent] = useState({});
 
   useEffect(() => {
     axios
@@ -75,6 +78,11 @@ const Event = () => {
       });
   };
 
+  const editEvent = (event) => {
+    setShowEditEvent(true);
+    setEvent(event);
+  };
+
   return (
     <>
       {showAlert && (
@@ -119,10 +127,10 @@ const Event = () => {
               color="light"
               events={events}
               onDelete={deleteEvent}
-              onEventEdit={setShowEditEvent}
+              onEdit={editEvent}
             />
           ) : (
-            <EventEdit />
+            <EventEdit event={event} />
           )}
         </div>
 

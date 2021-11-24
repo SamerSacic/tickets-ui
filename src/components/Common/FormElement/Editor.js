@@ -8,10 +8,10 @@ const Editor = ({ control, inputName }) => {
     <Controller
       control={control}
       name={inputName}
-      render={({ field: { onChange, onBlur } }) => (
+      render={({ field: { onChange, onBlur, value } }) => (
         <CKEditor
           editor={ClassicEditor}
-          data=""
+          data={value}
           onReady={(editor) => {
             editor.editing.view.change((writer) => {
               writer.setStyle(
