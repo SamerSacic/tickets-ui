@@ -5,7 +5,7 @@ import TableDropdown from "../Common/TableDropdown";
 
 import EventPlaceholder from "../../assets/img/event-placeholder.png";
 
-const EventTable = ({ color, events, onDelete }) => {
+const EventTable = ({ color, events, onDelete, onEventEdit }) => {
   return (
     <>
       <div
@@ -138,7 +138,11 @@ const EventTable = ({ color, events, onDelete }) => {
                       </div>
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                      <TableDropdown event={event} onDelete={onDelete} />
+                      <TableDropdown
+                        event={event}
+                        onDelete={onDelete}
+                        onEventEdit={onEventEdit}
+                      />
                     </td>
                   </tr>
                 ))

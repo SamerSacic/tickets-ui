@@ -7,12 +7,14 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import Alert from "../../components/Common/Alert";
 import EventTable from "../../components/Event/EventTable";
+import EventEdit from "../../components/Event/EditEvent";
 import CreateEventForm from "../../components/Event/CreateEventForm";
 import AdminFooter from "../../components/Common/AdminFooter";
 
 const Event = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [showEventForm, setShowEventForm] = useState(false);
+  const [showEditEvent, setShowEditEvent] = useState(false);
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -112,7 +114,16 @@ const Event = () => {
       </div>
       <div className="relative px-4 md:px-10 mx-auto w-full pt-6">
         <div className="mb-12 xl:mb-0">
-          <EventTable color="light" events={events} onDelete={deleteEvent} />
+          {!showEditEvent ? (
+            <EventTable
+              color="light"
+              events={events}
+              onDelete={deleteEvent}
+              onEventEdit={setShowEditEvent}
+            />
+          ) : (
+            <EventEdit />
+          )}
         </div>
 
         <AdminFooter />
