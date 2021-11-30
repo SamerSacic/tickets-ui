@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 import { Transition } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,7 +23,7 @@ const Event = () => {
 
   useEffect(() => {
     axios
-      .get("https://thawing-reaches-07578.herokuapp.com/events")
+      .get("https://thawing-reaches-07578.herokuapp.com/api/events")
       .then((response) => setEvents(response.data))
       .catch((error) => {
         console.log(error);
@@ -31,7 +32,7 @@ const Event = () => {
 
   const addEvent = (event, setIsSubmitted) => {
     axios
-      .post("https://thawing-reaches-07578.herokuapp.com/events", event, {
+      .post("https://thawing-reaches-07578.herokuapp.com/api/events", event, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,11 +43,16 @@ const Event = () => {
           setEvents([
             ...events,
             {
-              title: event.title,
-              description: event.description,
+              id: response.data.id,
+              title: response.data.title,
+              description: response.data.description,
               period: {
-                start: event.period.start,
-                end: event.period.end,
+                start: moment(response.data.period.start).format(
+                  "MMMM d, yyyy HH:mm aa"
+                ),
+                end: moment(response.data.period.end).format(
+                  "MMMM d, yyyy HH:mm aa"
+                ),
               },
             },
           ]);
@@ -63,7 +69,7 @@ const Event = () => {
   const deleteEvent = (event) => {
     axios
       .delete(
-        `https://thawing-reaches-07578.herokuapp.com/events/${event.id}/delete`
+        `https://thawing-reaches-07578.herokuapp.com/api/events/${event.id}`
       )
       .then((response) => {
         console.log(response);
