@@ -12,8 +12,10 @@ const General = ({ event }) => {
     defaultValues: {
       eventTitle: event.title,
       eventDesc: event.description,
-      // eventStartDate: event.period.start,
-      // eventEndDate: event.period.end,
+      eventStartDate: new Date(
+        event.period.startDate + " " + event.period.startTime
+      ),
+      eventEndDate: new Date(event.period.endDate + " " + event.period.endTime),
     },
   });
 

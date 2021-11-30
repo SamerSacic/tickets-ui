@@ -25,7 +25,7 @@ const DateTimePicker = ({ control, inputName }) => {
           onChange={onChange}
           onBlue={onBlur}
           showTimeSelect
-          dateFormat="MMMM d, yyyy HH:mm aa"
+          dateFormat="MMMM d, yyyy HH:mm a"
           customInput={<Element onChange={onChange} />}
         />
       )}

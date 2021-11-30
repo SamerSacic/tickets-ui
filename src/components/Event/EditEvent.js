@@ -1,7 +1,6 @@
 import Tabs from "./Tab/Tabs";
 
 const EditEvent = ({ event }) => {
-  console.log(event);
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
