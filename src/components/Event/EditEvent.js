@@ -1,6 +1,6 @@
 import Tabs from "./Tab/Tabs";
 
-const EditEvent = ({ event }) => {
+const EditEvent = ({ event, onEditEvent }) => {
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
@@ -13,7 +13,7 @@ const EditEvent = ({ event }) => {
         </div>
         <div className="block w-full overflow-x-auto">
           <div className="px-4">
-            <Tabs event={event} />
+            <Tabs event={event} onEditEvent={onEditEvent} />
           </div>
         </div>
       </div>

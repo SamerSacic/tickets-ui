@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import moment from "moment";
 
 import Label from "../../Common/FormElement/Label";
 import Input from "../../Common/FormElement/Input";
 import Editor from "../../Common/FormElement/Editor";
 import DateTimePicker from "../../Common/FormElement/DateTimePicker";
 
-const General = ({ event }) => {
+const General = ({ event, onEditEvent }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { register, control, handleSubmit } = useForm({
     defaultValues: {
@@ -20,7 +21,19 @@ const General = ({ event }) => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    setIsSubmitted(true);
+
+    const eventData = {
+      id: event.id,
+      title: data.eventTitle,
+      description: data.eventDesc,
+      period: {
+        start: moment(data.eventStartDate).toISOString(),
+        end: moment(data.eventEndDate).toISOString(),
+      },
+    };
+
+    onEditEvent(eventData, setIsSubmitted);
   };
 
   return (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import General from "./General";
 
-const Tabs = ({ event }) => {
+const Tabs = ({ event, onEditEvent }) => {
   const [openTab, setOpenTab] = useState(1);
   return (
     <>
@@ -131,7 +131,7 @@ const Tabs = ({ event }) => {
             <div className="py-5 flex-auto">
               <div className="tab-content tab-space">
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
-                  <General event={event} />
+                  <General event={event} onEditEvent={onEditEvent} />
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
                   <p>TICKETS</p>

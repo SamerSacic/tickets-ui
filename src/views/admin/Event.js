@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import moment from "moment";
 
 import { Transition } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -47,12 +46,8 @@ const Event = () => {
               title: response.data.title,
               description: response.data.description,
               period: {
-                start: moment(response.data.period.start).format(
-                  "MMMM d, yyyy HH:mm aa"
-                ),
-                end: moment(response.data.period.end).format(
-                  "MMMM d, yyyy HH:mm aa"
-                ),
+                start: response.data.period.start,
+                end: response.data.period.end,
               },
             },
           ]);
@@ -84,9 +79,24 @@ const Event = () => {
       });
   };
 
-  const editEvent = (event) => {
+  const editEvent = (event, setIsSubmitted) => {
     setShowEditEvent(true);
     setEvent(event);
+    axios
+      .put(`https://thawing-reaches-07578.herokuapp.com/api/events`, event, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          setIsSubmitted(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -136,7 +146,7 @@ const Event = () => {
               onEdit={editEvent}
             />
           ) : (
-            <EventEdit event={event} />
+            <EventEdit event={event} onEditEvent={editEvent} />
           )}
         </div>
 
