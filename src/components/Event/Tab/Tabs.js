@@ -127,7 +127,7 @@ const Tabs = ({ event, onEditEvent }) => {
               </a>
             </li>
           </ul>
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full my-6 shadow-lg rounded">
+          <div className="relative flex flex-col min-w-0 break-words bg-white w-full my-6">
             <div className="py-5 flex-auto">
               <div className="tab-content tab-space">
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
