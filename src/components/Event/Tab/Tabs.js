@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import General from "./General";
+import Ticket from "./Ticket";
 
 const Tabs = ({ event, onEditEvent }) => {
   const [openTab, setOpenTab] = useState(1);
@@ -134,7 +135,7 @@ const Tabs = ({ event, onEditEvent }) => {
                   <General event={event} onEditEvent={onEditEvent} />
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-                  <p>TICKETS</p>
+                  <Ticket />
                 </div>
                 <div className={openTab === 3 ? "block" : "hidden"} id="link3">
                   <p>ORDERS</p>
